@@ -3,6 +3,7 @@
         <router-link v-if="!authStore.isAuthenticated" to="/login">Вход</router-link>
         <router-link v-if="!authStore.isAuthenticated" to="/register">Регистрация</router-link>
         <router-link v-if="authStore.isAuthenticated" to="/ads">Доска объявлений</router-link>
+        <router-link v-if="authStore.isAuthenticated" to="/ads/create">Создать объявление</router-link>
         <button v-if="authStore.isAuthenticated" @click="logout">Выйти</button>
     </nav>
 </template>
