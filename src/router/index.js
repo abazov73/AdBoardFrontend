@@ -4,11 +4,13 @@ import Login from '@/views/Login.vue'
 import Ads from '@/views/Ads.vue'
 import Register from '@/views/Register.vue'
 import AdsForm from '@/views/AdsForm.vue'
+import Profile from '@/views/Profile.vue'
 
 const routes = [
   { path: '/login', component: Login},
   { path: '/ads', component: Ads, meta: { requiresAuth: true } },
   { path: '/ads/create', component: AdsForm, meta: { requiresAuth: true }},
+  { path: '/profile', component: Profile, meta: { requiresAuth: true }},
   { path: '/register', component: Register },
 ]
 

@@ -3,12 +3,12 @@
     <h1>Объявления</h1>
     <div v-if="loading">Загрузка...</div>
     <div v-if="error">{{ error }}</div>
-    <ul v-if="ads.length">
-      <li v-for="ad in ads" :key="ad.id">
+    <div class="ads-container" v-if="ads.length">
+      <div class="ad-card" v-for="ad in ads" :key="ad.id">
         <h2>{{ ad.title }}</h2>
         <p>{{ ad.description }}</p>
-      </li>
-    </ul>
+      </div>
+    </div>
     <div v-else>Нет объявлений.</div>
   </div>
 </template>
@@ -34,14 +34,39 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-ul {
-  list-style-type: none;
-  padding: 0;
+.ads-container {
+  display: flex;
+  flex-wrap: wrap; /* Позволяет карточкам переноситься на новую строку */
+  gap: 20px; /* Промежуток между карточками */
 }
-li {
-  margin-bottom: 20px;
+
+.ad-card {
+  background-color: white; /* Цвет фона карточки */
+  border: 1px solid #ccc; /* Граница карточки */
+  border-radius: 8px; /* Закругленные углы */
+  padding: 15px; /* Внутренние отступы */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для эффекта поднятия */
+  width: calc(33.333% - 20px); /* Ширина карточки (3 в ряд с учетом промежутка) */
 }
-h2 {
+
+.ad-card h2 {
   margin: 0;
+}
+
+.ad-card p {
+  margin-top: 10px; /* Отступ сверху для описания */
+}
+
+/* Адаптивность для меньших экранов */
+@media (max-width: 768px) {
+  .ad-card {
+    width: calc(50% - 20px); /* Две карточки в ряд на средних экранах */
+  }
+}
+
+@media (max-width: 480px) {
+  .ad-card {
+    width: calc(100% - 20px); /* Одна карточка на маленьких экранах */
+  }
 }
 </style>
